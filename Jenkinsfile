@@ -25,7 +25,9 @@ pipeline {
 
       stage('Build and Push Image') {
          steps {
-           sh 'docker image build -t ${REPOSITORY_TAG} .'
+           sh 'echo Using repository image.
+           sh 'docker image pull richardchesterwood/k8s-fleetman-webapp-angular:release1'
+          // sh 'docker image build -t ${REPOSITORY_TAG} .'
          }
       }
 
