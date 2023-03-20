@@ -17,7 +17,8 @@ spec:
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: production-microservice
-        image: ${REPOSITORY_TAG}
+        image: richardchesterwood/k8s-fleetman-webapp-angular:release1
+        # image: ${REPOSITORY_TAG}
         imagePullPolicy: Never
         readinessProbe:
           httpGet:
