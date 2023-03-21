@@ -14,8 +14,8 @@ pipeline {
       stage('Preparation') {
          steps {
              sh 'Clean workspace. TP0-A'
-           // cleanWs()
-           // git credentialsId: 'GitHub', url: "https://github.com/${ORGANIZATION_NAME}/${SERVICE_NAME}"
+             cleanWs()
+             git credentialsId: 'GitHub', url: "https://github.com/${ORGANIZATION_NAME}/${SERVICE_NAME}"
          }
       }
       stage('Build') {
