@@ -28,7 +28,7 @@ pipeline {
       stage('Build and Push Image') {
          steps {
            sh 'echo Using repository image. TP1'
-          // sh 'docker pull richardchesterwood/k8s-fleetman-webapp-angular:release1'
+           sh 'docker pull richardchesterwood/k8s-fleetman-webapp-angular:release1'
           // sh 'docker image build -t ${REPOSITORY_TAG} .'
          }
       }
@@ -36,7 +36,7 @@ pipeline {
       stage('Deploy to Cluster') {
           steps {
              sh 'echo Deploy TP2.'
-       //     sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
+             sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
           }
       }
    }
