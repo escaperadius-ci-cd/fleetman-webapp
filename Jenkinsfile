@@ -13,30 +13,25 @@ pipeline {
    stages {
       stage('Preparation') {
          steps {
-             sh 'echo Clean workspace. TP0-A'
-             cleanWs()
-             git credentialsId: 'GitHub', url: "https://github.com/${ORGANIZATION_NAME}/${SERVICE_NAME}"
+            cleanWs()
+            git credentialsId: 'GitHub', url: "https://github.com/${ORGANIZATION_NAME}/${SERVICE_NAME}"
          }
       }
       stage('Build') {
          steps {
             sh 'echo No build required for Webapp.'
-            // sh 'docker image rm richardchesterwood/k8s-fleetman-webapp-angular:release1'
          }
       }
 
       stage('Build and Push Image') {
          steps {
-           sh 'echo Using repository image. TP1'
-         //  sh 'docker pull richardchesterwood/k8s-fleetman-webapp-angular:release1'
            sh 'docker image build -t ${REPOSITORY_TAG} .'
          }
       }
 
       stage('Deploy to Cluster') {
           steps {
-             sh 'echo Deploy TP2.'
-             sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
+            sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
           }
       }
    }
