@@ -20,6 +20,7 @@ pipeline {
       stage('Build') {
          steps {
             sh 'echo No build required for Webapp.'
+            sh 'docker image rm richardchesterwood/k8s-fleetman-webapp-angular:release1'
          }
       }
 
