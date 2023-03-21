@@ -13,8 +13,9 @@ pipeline {
    stages {
       stage('Preparation') {
          steps {
-            cleanWs()
-            git credentialsId: 'GitHub', url: "https://github.com/${ORGANIZATION_NAME}/${SERVICE_NAME}"
+             sh 'Clean workspace. TP0'
+          //  cleanWs()
+          //  git credentialsId: 'GitHub', url: "https://github.com/${ORGANIZATION_NAME}/${SERVICE_NAME}"
          }
       }
       stage('Build') {
@@ -35,7 +36,7 @@ pipeline {
       stage('Deploy to Cluster') {
           steps {
              sh 'echo Deploy TP2.'
-            sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
+       //     sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
           }
       }
    }
