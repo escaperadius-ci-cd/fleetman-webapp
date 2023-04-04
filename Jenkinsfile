@@ -31,7 +31,7 @@ pipeline {
       
       stage('Push Image to DockerHub') {
          steps {
-           sh 'docker image push -t ${REPOSITORY_TAG} .'
+           sh 'docker push -t ${REPOSITORY_TAG} .'
          }
       }
       
