@@ -23,12 +23,18 @@ pipeline {
          }
       }
 
-      stage('Build and Push Image') {
+      stage('Build Docker Image') {
          steps {
            sh 'docker image build -t ${REPOSITORY_TAG} .'
          }
       }
-
+      
+      stage('Push Image to DockerHub') {
+         steps {
+           sh 'docker image push -t ${REPOSITORY_TAG} .'
+         }
+      }
+      
       stage('Deploy to Cluster') {
           steps {
             sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
