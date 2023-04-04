@@ -8,6 +8,7 @@ pipeline {
      
      SERVICE_NAME = "fleetman-webapp"
      REPOSITORY_TAG="${YOUR_DOCKERHUB_USERNAME}/${ORGANIZATION_NAME}-${SERVICE_NAME}:${BUILD_ID}"
+     DOCKERHUB_CREDENTIALS = credentials('escaperadius-dockerhub')
    }
 
    stages {
