@@ -23,6 +23,12 @@ pipeline {
             sh 'echo No build required for Webapp.'
          }
       }
+      
+      stage('Login') {
+         steps {
+         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+         }
+      }
 
       stage('Build Docker Image') {
          steps {
@@ -41,5 +47,11 @@ pipeline {
             sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
           }
       }
+   }
+   
+   post {
+     always {
+       sh 'docker logout'
+     }
    }
 }
